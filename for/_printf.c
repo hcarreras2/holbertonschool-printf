@@ -11,7 +11,8 @@
 */
 int _printf(const char *format, ...)
 {
-	 int i = 0; 
+	 int i = 0;
+
 	 int printed_chars = 0;
 
 	va_list args;
@@ -27,6 +28,18 @@ int _printf(const char *format, ...)
 				printed_chars += print_char(args);
 			else if (format[i] == 's')
 				printed_chars += print_string(args);
+			else if (format[i] == 'd' || format[i] == 'i')
+				printed_chars += print_int(args);
+			else if (format[i] == 'u')
+				printed_chars += print_unsigned(args);
+			else if (format[i] == 'o')
+				printed_chars += print_octal(args);
+			else if (format[i] == 'x')
+				printed_chars += print_hex(args, 0);
+			else if (format[i] == 'X')
+				printed_chars += print_hex(args, 1);
+			else if (format[i] == 'p')
+				printed_chars += print_pointer(args);
 			else if (format[i] == '%')
 				printed_chars += print_percent(args);
 			else
