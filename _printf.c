@@ -1,103 +1,43 @@
 #include "main.h"
-#include <unistd.h>
-
 /**
-* _printf - produces output according to a format
-* @format: format string containing the characters and the specifiers
-* Description: this function will call the corresponding print function
-* to handle the specified format
-* _putchar - Putchar
-* Return: length of the formatted output string
-*/
+ * _printf - a typical printf
+ * @format: is a character string
+ * Return: the number of characters printed
+ */
 int _printf(const char *format, ...)
 {
-	 int i = 0;
-	 int printed_chars = 0;
 
-	va_list args;
+	int i = 0, len = 0, ret = 0;
+	va_list arg;
 
-	__builtin_va_start(args, format);
-
+	if (format == NULL || (strlen(format) == 1 && format[0] == '%'))
+	{
+		return (-1);
+	}
+	va_start(arg, format);
 	while (format && format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] != '%')
 		{
-			i++;
-			if (format[i] == 'c')
-				printed_chars += print_char(args);
-			else if (format[i] == 's')
-				printed_chars += print_string(args);
-			else if (format[i] == '%')
-				printed_chars += print_percent(args);
-			else
-			{
-				_putchar('%');
-				_putchar(format[i]);
-				printed_chars += 2;
-			}
+			putchar(format[i]);
+			len++;
 		}
-		else
+		if (format[i] == '%' && format[i + 1] != 'K' && format[i + 1] != '!')
 		{
-			_putchar(format[i]);
-			printed_chars++;
+			ret = get_func(*(format + (i + 1)), arg);
+			if (ret != 0)
+				len += ret;
+			i += 2;
+			continue;
+		}
+		else if ((format[i] == '%' && format[i + 1] == 'K') ||
+		 (format[i] == '%' && format[i + 1] == '!'))
+		{
+			putchar(format[i]);
+			len++;
 		}
 		i++;
 	}
-	va_end(args);
-	return (printed_chars);
-}
-
-/**
-* _putchar - writes the character c to stdout
-* @c: The character to print
-*
-* Return: On success 1.
-* On error, -1 is returned, and errno is set appropriately.
-*/
-int _putchar(char c)
-{
-	return (write(1, &c, 1));
-}
-
-/**
-* print_char - prints a character
-* @args: The arguments list containing the character to print
-*
-* Return: The number of characters printed
-*/
-int print_char(va_list args)
-{
-	char c = va_arg(args, int);
-
-	return (_putchar(c));
-}
-
-/**
-* print_string - prints a string
-* @args: The arguments list containing the string to print
-*
-* Return: The number of characters printed
-*/
-int print_string(va_list args)
-{
-	int i;
-
-	char *str = va_arg(args, char *);
-
-	if (str == NULL)
-		str = "(null)";
-	for (i = 0; str[i] != '\0'; i++)
-		_putchar(str[i]);
-	return (i);
-}
-
-/**
-* print_percent - prints a percent sign
-* @args: The arguments list (unused)
-*
-* Return: The number of characters printed
-*/
-int print_percent(va_list args __attribute__((unused)))
-{
-	return (_putchar('%'));
+	va_end(arg);
+	return (len);
 }
