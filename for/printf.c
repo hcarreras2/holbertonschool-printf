@@ -11,7 +11,8 @@
 */
 int _printf(const char *format, ...)
 {
-	 i = 0, printed_chars = 0;
+	 int i = 0;
+	 int printed_chars = 0;
 
 	va_list args;
 
