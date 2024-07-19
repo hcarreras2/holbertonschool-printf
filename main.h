@@ -2,21 +2,24 @@
 #define MAIN_H
 
 #include <stdarg.h>
+#include <stdio.h>
+#include <unistd.h>
 
 int _printf(const char *format, ...);
+
+typedef struct check
+{
+	char *input;
+
+	int (*f)(va_list);
+} ck;
+
+int write_char(va_list list);
+int write_string(va_list list);
+int write_number(va_list list);
+int print_mod(va_list list);
+int get_op(const char *format, va_list list);
+
 int _putchar(char c);
-int print_char(va_list args);
-int print_string(va_list args);
-int print_percent(va_list args);
-int print_int(va_list args);
-int print_unsigned(va_list args);
-int print_octal(va_list args);
-int print_hex(va_list args, int uppercase);
-int print_pointer(va_list args);
-int print_base(unsigned long int num, int base, const char *digits);
-int print_number(unsigned long int num);
-int handle_format(const char *format, va_list args);
-int handle_specifier(const char *format, int *i, va_list args);
-int print_unknown_specifier(char specifier);
 
 #endif /* MAIN_H */

@@ -32,8 +32,28 @@ int print_unsigned(va_list args)
 {
 	unsigned int num = va_arg(args, unsigned int);
 
-	return (print_number(num));
+	char buffer[20];
+
+	int i = 0, j, printed_chars = 0;
+
+	if (num == 0)
+	{
+		_putchar('0');
+		return (1);
+	}
+	while (num != 0)
+	{
+		buffer[i++] = (num % 10) + '0';
+		num /= 10;
+	}
+	for (j = i - 1; j >= 0; j--)
+	{
+		_putchar(buffer[j]);
+		printed_chars++;
+	}
+	return (printed_chars);
 }
+
 
 /**
 * print_octal - prints an unsigned integer in octal
