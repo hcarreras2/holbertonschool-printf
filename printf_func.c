@@ -84,5 +84,5 @@ int write_number(va_list list)
 int print_mod(va_list list)
 {
 	(void)list;
-	return (write(1, "%", 1));
+	return (_putchar('%'));
 }
