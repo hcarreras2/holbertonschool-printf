@@ -1,22 +1,22 @@
 NAME
 
-    _printf - custom implementation of the printf function
+	_printf - custom implementation of the printf function
 
 SYNOPSIS
 
-    #include "main.h"
+	#include "main.h"
 
-    int _printf(const char *format, ...);
+	int _printf(const char *format, ...);
 
 DESCRIPTION
 
-    The _printf function is a custom implementation of the standard printf function. 
-    It takes a format string and a variable number of arguments, 
-    and prints the formatted output to the standard output.
+	The _printf function is a custom implementation of the standard printf function.
+	It takes a format string and a variable number of arguments,
+	and prints the formatted output to the standard output.
 
 FORMAT STRING
 
-The format string is a character string that contains format specifiers, 
+The format string is a character string that contains format specifiers,
 which are replaced by the arguments passed to the function. The format specifiers are:
 
 %c: character
@@ -27,47 +27,47 @@ which are replaced by the arguments passed to the function. The format specifier
 
 RETURN VALUE+
 
-    The _printf function returns the number of characters printed.
+	The _printf function returns the number of characters printed.
 
 HELPER FUNCTIONS
 
-    The following helper functions are used by _printf to perform specific tasks:
+	The following helper functions are used by _printf to perform specific tasks:
 
-    write_char
+	write_char
 
-        int write_char(va_list list);
+		int write_char(va_list list);
 
-            Writes a single character to the output.
+			Writes a single character to the output.
 
-    write_string
+	write_string
 
-        int write_string(va_list list);
+		int write_string(va_list list);
 
-            Writes a string to the output.
+			Writes a string to the output.
 
-    write_number
+	write_number
 
-        int write_number(va_list list);
+		int write_number(va_list list);
 
-            Writes a number to the output.
+			Writes a number to the output.
 
-    print_mod
+	print_mod
 
-        int print_mod(va_list list);
+		int print_mod(va_list list);
 
-            Prints a modifier (e.g., %, +) to the output.
+			Prints a modifier (e.g., %, +) to the output.
 
-    get_op
+	get_op
 
-        int get_op(const char *format, va_list list);
+		int get_op(const char *format, va_list list);
 
-            Gets the next operation from the format string and performs it.
+			Gets the next operation from the format string and performs it.
 
-    _putchar
+	_putchar
 
-        int _putchar(char c);
+		int _putchar(char c);
 
-            Writes a single character to the standard output.
+			Writes a single character to the standard output.
 
 SEE ALSO
 
