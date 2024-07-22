@@ -34,7 +34,7 @@ int get_op(const char *format, va_list list)
 	int i = 0, j, printed_chars = 0;
 
 	ck func_type[] = {
-		{"c", write_char}, {"s", write_string}, {"\%%", print_mod},
+		{"c", write_char}, {"s", write_string}, {"%", print_mod},
 		{"d", write_number}, {"i", write_number}, {NULL, NULL}
 	};
 
