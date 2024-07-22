@@ -74,7 +74,6 @@ int write_number(va_list list)
 
 	return (digits);
 }
-
 /**
 * print_mod - Prints a percent sign.
 * @list: The arguments list (unused).
@@ -84,5 +83,5 @@ int write_number(va_list list)
 int print_mod(va_list list)
 {
 	(void)list;
-	return (_putchar('%%'));
+	return (_putchar('%'));
 }
