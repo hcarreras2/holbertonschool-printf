@@ -51,7 +51,7 @@ int get_op(const char *format, va_list list)
 					break;
 				}
 			}
-			if (func_type[j].input == NULL && format[i] != '\0')
+			if (func_type[j].input == NULL)
 			{
 				_putchar('%');
 				_putchar(format[i]);
